@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link rel="stylesheet" href="styles.min.css"> <!-- Minified CSS -->
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Optimized Website</h1>
+    </header>
+    
+    <main>
+        <img src="placeholder.jpg" data-src="./images/website.jpg" alt="Lazy Loaded Image" class="lazy" />
+        <img src="placeholder.jpg" data-src="./images/website1.jpg" alt="Lazy Loaded Image" class="lazy" />
+        <script src="script.min.js" async></script> <!-- Asynchronous loading -->
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 My Website</p>
+    </footer>
+
+    <script>
+        // Lazy loading images
+        const lazyImages = document.querySelectorAll('img.lazy');
+
+        const loadImages = (image) => {
+            image.src = image.dataset.src;
+            image.classList.remove('lazy');
+        };
+
+        const imgObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    loadImages(entry.target);
+                    imgObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        lazyImages.forEach(image => {
+            imgObserver.observe(image);
+        });
+    </script>
+</body>
+</html>
+
+    <script src="./app.js"></script>
+</body>
+</html>
